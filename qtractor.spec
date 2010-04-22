@@ -1,6 +1,6 @@
 %define name qtractor
 %define version 0.4.5
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: 	An Audio/MIDI multi-track sequencer
 Name: 		%{name}
@@ -22,7 +22,9 @@ BuildRequires:	rubberband-devel
 BuildRequires:	liblo-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	dssi-devel
+BuildRequires:  slv2-devel lv2core-devel 
 
+Requires:		raptor redland rasqal dssi lv2core ladspa
 
 %description
 Qtractor is an Audio/MIDI multi-track sequencer application
