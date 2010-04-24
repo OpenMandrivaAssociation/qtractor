@@ -22,7 +22,7 @@ BuildRequires:	rubberband-devel
 BuildRequires:	liblo-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	dssi-devel
-BuildRequires:  slv2-devel lv2core-devel 
+BuildRequires:  slv2-devel 
 
 Requires:		raptor redland rasqal dssi lv2core ladspa
 
