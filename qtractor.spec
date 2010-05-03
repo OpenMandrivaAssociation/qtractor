@@ -1,30 +1,31 @@
 %define name qtractor
 %define version 0.4.5
-%define release %mkrel 2
+%define release %mkrel 3
 
-Summary: 	An Audio/MIDI multi-track sequencer
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%{release}
-License:	GPLv2+
-Group:		Sound
-Source0:	%{name}-%{version}.tar.gz
-URL:		http://qtractor.sourceforge.net/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:  qt4-devel	
-BuildRequires:	jackit-devel >= 0.100.0
-BuildRequires:	libalsa-devel
-BuildRequires:	sndfile-devel >= 1.0.11
-BuildRequires:	libvorbis-devel
-BuildRequires:	mad-devel
-BuildRequires:	libsamplerate-devel
-BuildRequires:	rubberband-devel
-BuildRequires:	liblo-devel
-BuildRequires:	ladspa-devel
-BuildRequires:	dssi-devel
+Summary:    An Audio/MIDI multi-track sequencer
+Name:       %{name}
+Version:    %{version}
+Release:    %{release}
+License:    GPLv2+
+Group:      Sound
+Source0:    %{name}-%{version}.tar.gz
+URL:        http://qtractor.sourceforge.net/
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:  qt4-devel   
+BuildRequires:  jackit-devel >= 0.100.0
+BuildRequires:  libalsa-devel
+BuildRequires:  sndfile-devel >= 1.0.11
+BuildRequires:  libvorbis-devel
+BuildRequires:  mad-devel
+BuildRequires:  libsamplerate-devel
+BuildRequires:  rubberband-devel
+BuildRequires:  liblo-devel
+BuildRequires:  ladspa-devel
+BuildRequires:  dssi-devel
 BuildRequires:  slv2-devel 
+BuildRequires:  desktop-file-utils
 
-Requires:		raptor redland rasqal dssi lv2core ladspa
+Requires:       raptor redland rasqal dssi lv2core ladspa
 
 %description
 Qtractor is an Audio/MIDI multi-track sequencer application
@@ -37,7 +38,7 @@ evolve as a fairly-featured Linux Desktop Audio Workstation GUI,
 specially dedicated to the personal home-studio.
 
 %prep
-%setup
+%setup -q
 
 %build
 %configure
@@ -46,6 +47,18 @@ specially dedicated to the personal home-studio.
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
+# Fix the .desktop file by removing
+# 2 non-Mdv key and 2 non-standard categories
+desktop-file-install \
+    --remove-key="X-SuSE-translate" \
+    --remove-key="Version" \
+    --remove-category="MIDI" \
+    --remove-category="ALSA" \
+    --remove-category="JACK" \
+    --add-category="Midi" \
+    --add-category="X-MandrivaLinux-Sound" \
+    --dir %{buildroot}%{_datadir}/applications \
+%{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
