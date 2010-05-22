@@ -1,6 +1,6 @@
 %define name qtractor
-%define version 0.4.5
-%define release %mkrel 3
+%define version 0.4.6
+%define release %mkrel 1
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -42,11 +42,11 @@ specially dedicated to the personal home-studio.
 
 %build
 %configure
-%make
+%make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall
+%makeinstall DESTDIR=$RPM_BUILD_ROOT 
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
 desktop-file-install \
@@ -68,4 +68,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
