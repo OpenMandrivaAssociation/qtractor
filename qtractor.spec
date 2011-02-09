@@ -1,6 +1,6 @@
 %define name qtractor
 %define version 0.4.8
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -11,7 +11,7 @@ Group:      Sound
 Source0:    %{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:  qt4-devel   
+BuildRequires:  qt4-devel
 BuildRequires:  jackit-devel >= 0.100.0
 BuildRequires:  libalsa-devel
 BuildRequires:  sndfile-devel >= 1.0.11
@@ -22,7 +22,7 @@ BuildRequires:  rubberband-devel
 BuildRequires:  liblo-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  dssi-devel
-BuildRequires:  slv2-devel 
+BuildRequires:  slv2-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       raptor redland rasqal dssi lv2core ladspa
@@ -42,11 +42,11 @@ specially dedicated to the personal home-studio.
 
 %build
 %configure
-%make 
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall DESTDIR=$RPM_BUILD_ROOT 
+%makeinstall DESTDIR=$RPM_BUILD_ROOT
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
 desktop-file-install \
