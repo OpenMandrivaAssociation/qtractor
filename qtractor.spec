@@ -1,6 +1,6 @@
 %define name qtractor
 %define version 0.4.8
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
