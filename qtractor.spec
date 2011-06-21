@@ -1,6 +1,6 @@
 %define name qtractor
 %define version 0.4.9
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -22,7 +22,7 @@ BuildRequires:  rubberband-devel
 BuildRequires:  liblo-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  dssi-devel
-BuildRequires:  slv2-devel
+BuildRequires:  slv2-devel gtk2-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       redland dssi lv2core ladspa
