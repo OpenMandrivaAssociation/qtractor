@@ -1,6 +1,6 @@
 %define name qtractor
 %define version 0.4.9
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -22,10 +22,13 @@ BuildRequires:  rubberband-devel
 BuildRequires:  liblo-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  dssi-devel
-BuildRequires:  slv2-devel gtk2-devel
+BuildRequires:  lilv-devel suil-devel
+BuildRequires:  slv2-devel
+BuildRequires:  gtk2-devel
 BuildRequires:  desktop-file-utils
 
-Requires:       redland dssi lv2core ladspa
+Requires:       dssi ladspa
+Requires:       suil-gtk2-in-qt4
 
 %description
 Qtractor is an Audio/MIDI multi-track sequencer application
@@ -41,7 +44,7 @@ specially dedicated to the personal home-studio.
 %setup -q
 
 %build
-%configure
+%configure --enable-lilv --enable-suil
 %make
 
 %install
