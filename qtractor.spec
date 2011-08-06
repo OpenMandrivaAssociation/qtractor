@@ -1,6 +1,6 @@
 %define name qtractor
-%define version 0.4.9
-%define release %mkrel 4
+%define version 0.5.0
+%define release %mkrel 1
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -41,7 +41,7 @@ evolve as a fairly-featured Linux Desktop Audio Workstation GUI,
 specially dedicated to the personal home-studio.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --enable-lilv --enable-suil
