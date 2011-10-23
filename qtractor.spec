@@ -1,6 +1,6 @@
 %define name qtractor
-%define version 0.5.0
-%define release %mkrel 2
+%define version 0.5.1
+%define release %mkrel 1
 
 Summary:    An Audio/MIDI multi-track sequencer
 Name:       %{name}
@@ -44,7 +44,9 @@ specially dedicated to the personal home-studio.
 %setup
 
 %build
+perl -pi -e 's/\$\(prefix\)/\/usr/g' Makefile.in
 %configure --enable-lilv --enable-suil
+
 %make
 
 %install
@@ -72,3 +74,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/locale/*.qm
