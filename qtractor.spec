@@ -1,20 +1,16 @@
-%define name qtractor
-%define version 0.5.1
-%define release %mkrel 1
-
+Name:       qtractor
+Version:    0.5.2
+Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
-Name:       %{name}
-Version:    %{version}
-Release:    %{release}
 License:    GPLv2+
 Group:      Sound
 Source0:    %{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  qt4-devel
-BuildRequires:  jackit-devel >= 0.100.0
+BuildRequires:  jackit-devel
 BuildRequires:  libalsa-devel
-BuildRequires:  sndfile-devel >= 1.0.11
+BuildRequires:  sndfile-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  mad-devel
 BuildRequires:  libsamplerate-devel
@@ -44,14 +40,13 @@ specially dedicated to the personal home-studio.
 %setup
 
 %build
-perl -pi -e 's/\$\(prefix\)/\/usr/g' Makefile.in
-%configure --enable-lilv --enable-suil
+%configure --enable-lilv --enable-suil --localedir=%{_localedir}/%{name}
 
 %make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall DESTDIR=$RPM_BUILD_ROOT
+%makeinstall DESTDIR=%{buildroot}
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
 desktop-file-install \
@@ -74,4 +69,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/locale/*.qm
+%{_localedir}/%{name}/*.qm
