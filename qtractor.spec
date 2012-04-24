@@ -1,6 +1,6 @@
 Name:       qtractor
 Version:    0.5.4
-Release:    1
+Release:    2
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
@@ -19,12 +19,12 @@ BuildRequires:  liblo-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  dssi-devel
 BuildRequires:  lilv-devel suil-devel
-BuildRequires:  slv2-devel
 BuildRequires:  gtk2-devel
 BuildRequires:  desktop-file-utils
 
 Requires:       dssi ladspa
 Requires:       suil-gtk2-in-qt4
+Requires:       suil-x11-in-qt4
 
 %description
 Qtractor is an Audio/MIDI multi-track sequencer application
