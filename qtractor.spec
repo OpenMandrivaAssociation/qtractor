@@ -1,5 +1,7 @@
+%define debug_package          %{nil}
+
 Name:       qtractor
-Version:    0.5.5
+Version:    0.5.6
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
@@ -69,4 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/mimetypes/*.png
+%{_datadir}/mime/packages/%{name}.xml
 %{_localedir}/%{name}/*.qm
