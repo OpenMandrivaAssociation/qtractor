@@ -1,7 +1,7 @@
 %define debug_package          %{nil}
 
 Name:       qtractor
-Version:    0.5.7
+Version:    0.5.11
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
@@ -20,7 +20,7 @@ BuildRequires:  liblo-devel
 BuildRequires:  ladspa-devel
 BuildRequires:  dssi-devel
 BuildRequires:  lilv-devel suil-devel
-BuildRequires:  gtk2-devel
+BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  desktop-file-utils
 
 Requires:       dssi ladspa
@@ -66,7 +66,9 @@ desktop-file-install \
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/scalable/apps/%{name}.svgz
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
+%{_datadir}/icons/hicolor/scalable/mimetypes/*.svgz
 %{_datadir}/mime/packages/%{name}.xml
 %{_localedir}/%{name}/*.qm
 
