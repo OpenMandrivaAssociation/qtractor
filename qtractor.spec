@@ -49,7 +49,7 @@ chmod -x src/qtractorMmcEvent.*
 %make
 
 %install
-%makeinstall DESTDIR=%{buildroot}
+%makeinstall_std
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
 desktop-file-install \
@@ -74,6 +74,4 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
 %{_datadir}/mime/packages/%{name}.xml
-%{_mandir}/man?/*
-
-
+%{_mandir}/man1/*
