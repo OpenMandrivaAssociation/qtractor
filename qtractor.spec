@@ -74,6 +74,6 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
 %{_datadir}/mime/packages/%{name}.xml
-
+%{_mandir}/man?/*
 
 
