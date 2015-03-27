@@ -1,4 +1,5 @@
 removed_sources:
   qtractor-0.5.12.tar.gz: f18c395bc57e5bd9f1befec099fa8fb7f465dd10
-sources:
   qtractor-0.6.3.tar.gz: cc7a256696f4ed8c09dcd9c16617e0f0f4dab506
+sources:
+  qtractor-0.6.2.tar.gz: 399539764d6d3ea73339f0f4e0842266ce6616a6

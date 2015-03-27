@@ -1,12 +1,12 @@
 %define debug_package          %{nil}
 
 Name:       qtractor
-Version:    0.6.3
-Release:    2
+Version:    0.6.2
+Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
-Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+Source0:    http://download.sourceforge.net/qtractor/%{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
 BuildRequires:  qt4-devel
 BuildRequires:  pkgconfig(jack)
