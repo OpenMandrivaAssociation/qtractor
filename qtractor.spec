@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(suil-0)
 BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  desktop-file-utils
+BuildRequires:  qmake5
 
 Requires:       dssi
 Requires:       ladspa
