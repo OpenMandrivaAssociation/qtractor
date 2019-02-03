@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  desktop-file-utils
 BuildRequires:  qmake5
+BuildRequires:  cmake(Qt5LinguistTools)
 
 Requires:       dssi
 Requires:       ladspa
