@@ -72,10 +72,12 @@ desktop-file-install \
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/%{name}
+%{_libdir}/qtractor/qtractor_plugin_scan
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
 %{_datadir}/mime/packages/%{name}.xml
+%{_datadir}/metainfo/qtractor.appdata.xml
 %{_mandir}/man1/*
