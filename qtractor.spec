@@ -1,14 +1,17 @@
 %define debug_package          %{nil}
 
 Name:       qtractor
-Version:    0.6.3
-Release:    2
+Version:    0.9.3
+Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
 Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
-BuildRequires:  qt4-devel
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5Xml)
+BuildRequires:	pkgconfig(Qt5X11Extras)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(sndfile)
@@ -23,11 +26,12 @@ BuildRequires:  pkgconfig(suil-0)
 BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  desktop-file-utils
+BuildRequires:  qmake5
+BuildRequires:  cmake(Qt5LinguistTools)
 
 Requires:       dssi
 Requires:       ladspa
-Requires:       suil-gtk2-in-qt4
-Requires:       suil-x11-in-qt4
+
 
 %description
 Qtractor is an Audio/MIDI multi-track sequencer application
@@ -40,16 +44,16 @@ evolve as a fairly-featured Linux Desktop Audio Workstation GUI,
 specially dedicated to the personal home-studio.
 
 %prep
-%setup -q
-chmod -x src/qtractorMmcEvent.*
+%autosetup -p1
 
 %build
-%configure --enable-lilv --enable-suil --localedir=%{_localedir}/%{name}
+%configure2_5x
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
+
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
 desktop-file-install \
@@ -68,10 +72,12 @@ desktop-file-install \
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/%{name}
+%{_libdir}/qtractor/qtractor_plugin_scan
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
 %{_datadir}/mime/packages/%{name}.xml
+%{_datadir}/metainfo/qtractor.appdata.xml
 %{_mandir}/man1/*
