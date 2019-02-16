@@ -1,7 +1,7 @@
 %define debug_package          %{nil}
 
 Name:       qtractor
-Version:    0.9.3
+Version:    0.9.5
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
