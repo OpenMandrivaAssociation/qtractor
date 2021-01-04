@@ -81,3 +81,4 @@ desktop-file-install \
 %{_datadir}/mime/packages/%{name}.xml
 %{_datadir}/metainfo/qtractor.appdata.xml
 %{_mandir}/man1/*
+%{_mandir}/fr/man1/qtractor.1.*
