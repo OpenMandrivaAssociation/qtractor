@@ -11,8 +11,10 @@ Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{ve
 URL:        http://qtractor.sourceforge.net/
 
 BuildRequires:  cmake
+BuildRequires:  cmake(Qt6)
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Svg)
 BuildRequires:	cmake(Qt6Xml)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(alsa)
@@ -29,7 +31,8 @@ BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  desktop-file-utils
 BuildRequires:  qmake5
-BuildRequires:  cmake(Qt5LinguistTools)
+BuildRequires:  cmake(Qt6LinguistTools)
+BuildRequires:	qt6-qtbase-theme-gtk3
 
 Requires:       dssi
 Requires:       ladspa
