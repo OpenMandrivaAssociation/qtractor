@@ -70,15 +70,14 @@ desktop-file-install \
     --add-category="Midi" \
     --add-category="X-MandrivaLinux-Sound" \
     --dir %{buildroot}%{_datadir}/applications \
-%{buildroot}%{_datadir}/applications/%{name}.desktop
-
+%{buildroot}%{_datadir}/applications/org.rncbc.qtractor.desktop
 %find_lang %{name} --with-qt
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/%{name}
 %{_libdir}/qtractor/qtractor_plugin_scan
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/org.rncbc.qtractor.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
