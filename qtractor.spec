@@ -74,15 +74,15 @@ desktop-file-install \
 %find_lang %{name} --with-qt
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING ChangeLog README TODO
+%doc ChangeLog README
 %{_bindir}/%{name}
 %{_libdir}/qtractor/qtractor_plugin_scan
 %{_datadir}/applications/org.rncbc.qtractor.desktop
-%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+#{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+#{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/icons/hicolor/32x32/mimetypes/*.png
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
-%{_datadir}/mime/packages/%{name}.xml
-%{_datadir}/metainfo/qtractor.appdata.xml
+#{_datadir}/mime/packages/%{name}.xml
+#{_datadir}/metainfo/qtractor.appdata.xml
 %{_mandir}/man1/*
 %{_mandir}/fr/man1/qtractor.1.*
