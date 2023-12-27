@@ -24,11 +24,13 @@ BuildRequires:  pkgconfig(mad)
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(rubberband)
 BuildRequires:  pkgconfig(liblo)
+BuildRequires:  pkgconfig(aubio)
 BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(dssi)
 BuildRequires:  pkgconfig(suil-0)
 BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(gtkmm-2.4)
 BuildRequires:  desktop-file-utils
 BuildRequires:  qmake5
 BuildRequires:  cmake(Qt6LinguistTools)
@@ -52,7 +54,9 @@ specially dedicated to the personal home-studio.
 %autosetup -p1
 
 %build
-%cmake -DCONFIG_QT6=yes
+%cmake \
+        -DCONFIG_QT6=yes \
+        -DCONFIG_LIBSUIL=yes
 
 %make_build
 
