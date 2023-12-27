@@ -2,17 +2,18 @@
 %define _empty_manifest_terminate_build 0
 
 Name:       qtractor
-Version:    0.9.24
+Version:    0.9.38
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
 Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
-BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5Xml)
-BuildRequires:	pkgconfig(Qt5X11Extras)
+
+BuilcRequires:  cmake
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6Xml)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(sndfile)
@@ -48,12 +49,12 @@ specially dedicated to the personal home-studio.
 %autosetup -p1
 
 %build
-%configure
+%cmake -DCONFIG_QT6=yes
 
 %make_build
 
 %install
-%make_install
+%make_install -C build
 
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
