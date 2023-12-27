@@ -10,7 +10,7 @@ Group:      Sound
 Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 URL:        http://qtractor.sourceforge.net/
 
-BuilcRequires:  cmake
+BuildRequires:  cmake
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6Xml)
