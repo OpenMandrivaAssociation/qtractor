@@ -31,6 +31,8 @@ BuildRequires:  pkgconfig(suil-0)
 BuildRequires:  pkgconfig(lilv-0)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(gtkmm-2.4)
+BuildRequires:  pkgconfig(xkbcommon-x11)
+BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  desktop-file-utils
 BuildRequires:  qmake5
 BuildRequires:  cmake(Qt6LinguistTools)
@@ -88,7 +90,7 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
 %{_datadir}/mime/packages/org.rncbc.qtractor.xml
 %{_datadir}/metainfo/org.rncbc.qtractor.metainfo.xml
-%{_datadir}qtractor/audio/metro_bar.wav
-%{_datadir}qtractor/audio/metro_beat.wav
+%{_datadir}/qtractor/audio/metro_bar.wav
+%{_datadir}/qtractor/audio/metro_beat.wav
 %{_mandir}/man1/*
 %{_mandir}/fr/man1/qtractor.1.*
