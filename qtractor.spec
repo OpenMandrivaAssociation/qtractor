@@ -8,7 +8,7 @@ Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
 Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
-URL:        http://qtractor.sourceforge.net/
+URL:        https://qtractor.sourceforge.net/
 
 BuildRequires:  cmake
 BuildRequires:  cmake(Qt6)
