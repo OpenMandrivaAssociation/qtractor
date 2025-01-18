@@ -2,12 +2,12 @@
 %define _empty_manifest_terminate_build 0
 
 Name:       qtractor
-Version:    0.9.38
+Version:    1.5.2
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
 Group:      Sound
-Source0:    http://softlayer-dal.dl.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+Source0:   https://sourceforge.net/projects/qtractor/files/qtractor/%{version}/%{name}-%{version}.tar.gz
 URL:        https://qtractor.sourceforge.net/
 
 BuildRequires:  cmake
@@ -92,5 +92,7 @@ desktop-file-install \
 %{_datadir}/metainfo/org.rncbc.qtractor.metainfo.xml
 %{_datadir}/qtractor/audio/metro_bar.wav
 %{_datadir}/qtractor/audio/metro_beat.wav
+%{_datadir}/qtractor/instruments/Standard1.ins
+%{_datadir}/qtractor/palette/
 %{_mandir}/man1/*
 %{_mandir}/fr/man1/qtractor.1.*
