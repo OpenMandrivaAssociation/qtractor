@@ -92,5 +92,7 @@ desktop-file-install \
 %{_datadir}/metainfo/org.rncbc.qtractor.metainfo.xml
 %{_datadir}/qtractor/audio/metro_bar.wav
 %{_datadir}/qtractor/audio/metro_beat.wav
+%{_datadir}/qtractor/instruments/Standard1.ins
+%{_datadir}/qtractor/palette/
 %{_mandir}/man1/*
 %{_mandir}/fr/man1/qtractor.1.*
