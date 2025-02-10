@@ -2,7 +2,7 @@
 %define _empty_manifest_terminate_build 0
 
 Name:       qtractor
-Version:    1.5.2
+Version:    1.5.3
 Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
 License:    GPLv2+
