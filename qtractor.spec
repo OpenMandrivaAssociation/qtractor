@@ -1,98 +1,109 @@
-#define debug_package          %{nil}
-%define _empty_manifest_terminate_build 0
+#define debug_package         %%{nil}
+#global	_empty_manifest_terminate_build 0
 
 Name:       qtractor
-Version:    1.5.3
-Release:    1
 Summary:    An Audio/MIDI multi-track sequencer
+Version:    1.5.5
+Release:    1
 License:    GPLv2+
 Group:      Sound
+Url:        https://qtractor.sourceforge.net/
 Source0:   https://sourceforge.net/projects/qtractor/files/qtractor/%{version}/%{name}-%{version}.tar.gz
-URL:        https://qtractor.sourceforge.net/
-
-BuildRequires:  cmake
-BuildRequires:  cmake(Qt6)
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Widgets)
-BuildRequires:  cmake(Qt6Svg)
-BuildRequires:	cmake(Qt6Xml)
-BuildRequires:  pkgconfig(jack)
-BuildRequires:  pkgconfig(alsa)
-BuildRequires:  pkgconfig(sndfile)
-BuildRequires:  pkgconfig(vorbis)
-BuildRequires:  pkgconfig(mad)
-BuildRequires:  pkgconfig(samplerate)
-BuildRequires:  pkgconfig(rubberband)
-BuildRequires:  pkgconfig(liblo)
-BuildRequires:  pkgconfig(aubio)
-BuildRequires:  ladspa-devel
-BuildRequires:  pkgconfig(dssi)
-BuildRequires:  pkgconfig(suil-0)
-BuildRequires:  pkgconfig(lilv-0)
-BuildRequires:  pkgconfig(gtk+-2.0)
-BuildRequires:  pkgconfig(gtkmm-2.4)
-BuildRequires:  pkgconfig(xkbcommon-x11)
-BuildRequires:  pkgconfig(vulkan)
-BuildRequires:  desktop-file-utils
-BuildRequires:  qmake5
-BuildRequires:  cmake(Qt6LinguistTools)
-BuildRequires:	qt6-qtbase-theme-gtk3
-
-Requires:       dssi
-Requires:       ladspa
-
+BuildRequires:		cmake >= 3.15
+BuildRequires:		desktop-file-utils
+BuildRequires:		git
+BuildRequires:		qmake-qt6
+BuildRequires:		qt6-qtbase-theme-gtk3
+BuildRequires:		cmake(Qt6)
+BuildRequires:		cmake(Qt6Core) >= 6.9
+BuildRequires:		cmake(Qt6LinguistTools)
+BuildRequires:		cmake(Qt6Svg)
+BuildRequires:		cmake(Qt6Widgets)
+BuildRequires:		cmake(Qt6Xml)
+BuildRequires:		ladspa-devel
+BuildRequires:		pkgconfig(alsa)
+BuildRequires:		pkgconfig(aubio)
+BuildRequires:		pkgconfig(dssi)
+BuildRequires:		pkgconfig(gtk+-2.0)
+BuildRequires:		pkgconfig(gtkmm-2.4)
+BuildRequires:		pkgconfig(jack)
+BuildRequires:		pkgconfig(liblo)
+BuildRequires:		pkgconfig(lilv-0)
+BuildRequires:		pkgconfig(lv2)
+BuildRequires:		pkgconfig(mad)
+BuildRequires:		pkgconfig(ogg)
+BuildRequires:		pkgconfig(rubberband)
+BuildRequires:		pkgconfig(samplerate)
+BuildRequires:		pkgconfig(sndfile)
+BuildRequires:		pkgconfig(suil-0)
+BuildRequires:		pkgconfig(vorbis)
+BuildRequires:		pkgconfig(vst3sdk)
+BuildRequires:		pkgconfig(vulkan)
+BuildRequires:		pkgconfig(xcb)
+BuildRequires:		pkgconfig(xkbcommon-x11)
+BuildRequires:		pkgconfig(zlib)
+Requires:	dssi
+Requires:	ladspa
 
 %description
-Qtractor is an Audio/MIDI multi-track sequencer application
-written in C++ around the Qt4 toolkit using Qt Designer.
+Qtractor is an Audio/MIDI multi-track sequencer application written in C++
+around the Qt toolkit using Qt Designer.
+The initial target platform will be Linux, where the Jack Audio Connection Kit
+(JACK) for audio, and the Advanced Linux Sound Architecture (ALSA) for MIDI,
+are the main infrastructures to evolve as a fairly-featured Linux Desktop
+Audio Workstation GUI, specially dedicated to the personal home-studio.
 
-The initial target platform will be Linux, where the Jack Audio
-Connection Kit (JACK) for audio, and the Advanced Linux Sound
-Architecture (ALSA) for MIDI, are the main infrastructures to
-evolve as a fairly-featured Linux Desktop Audio Workstation GUI,
-specially dedicated to the personal home-studio.
+%files -f %{name}.lang
+%doc ChangeLog README README.*
+%{_bindir}/%{name}
+%{_libdir}/%{name}/%{name}_plugin_scan
+%{_datadir}/applications/org.rncbc.%{name}.desktop
+%{_datadir}/icons/hicolor/scalable/apps/org.rncbc.%{name}.svg
+%{_datadir}/icons/hicolor/32x32/apps/org.rncbc.%{name}.png
+%{_datadir}/icons/hicolor/32x32/mimetypes/*.png
+%{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
+%{_datadir}/mime/packages/org.rncbc.%{name}.xml
+%{_datadir}/metainfo/org.rncbc.%{name}.metainfo.xml
+%{_datadir}/%{name}/audio/metro_bar.wav
+%{_datadir}/%{name}/audio/metro_beat.wav
+%{_datadir}/%{name}/instruments/Standard1.ins
+%{_datadir}/%{name}/palette/
+%{_mandir}/man1/%{name}.1.*
+%{_mandir}/fr/man1/%{name}.1.*
+
+#-----------------------------------------------------------------------------
 
 %prep
 %autosetup -p1
 
+
 %build
 %cmake \
-        -DCONFIG_QT6=yes \
-        -DCONFIG_LIBSUIL=yes
+	-DCONFIG_QT6=yes \
+%ifarch aarch64
+	-DCONFIG_SSE=no \
+%else
+	-DCONFIG_SSE=yes	 \
+%endif
+	-DCONFIG_VST3=yes \
+	-DCONFIG_WAYLAND=no
 
 %make_build
+
 
 %install
 %make_install -C build
 
 # Fix the .desktop file by removing
 # 2 non-Mdv key and 2 non-standard categories
-desktop-file-install \
-    --remove-key="X-SuSE-translate" \
-    --remove-key="Version" \
-    --remove-category="MIDI" \
-    --remove-category="ALSA" \
-    --remove-category="JACK" \
-    --add-category="Midi" \
-    --add-category="X-MandrivaLinux-Sound" \
-    --dir %{buildroot}%{_datadir}/applications \
-%{buildroot}%{_datadir}/applications/org.rncbc.qtractor.desktop
-%find_lang %{name} --with-qt
+desktop-file-edit \
+	--remove-key="X-SuSE-translate" \
+	--remove-key="Version" \
+	--remove-category="MIDI" \
+	--remove-category="ALSA" \
+	--remove-category="JACK" \
+	--add-category="Midi" \
+	--add-category="X-MandrivaLinux-Sound" \
+	%{buildroot}%{_datadir}/applications/org.rncbc.%{name}.desktop
 
-%files -f %{name}.lang
-%doc ChangeLog README
-%{_bindir}/%{name}
-%{_libdir}/qtractor/qtractor_plugin_scan
-%{_datadir}/applications/org.rncbc.qtractor.desktop
-%{_datadir}/icons/hicolor/scalable/apps/org.rncbc.qtractor.svg
-%{_datadir}/icons/hicolor/32x32/apps/org.rncbc.qtractor.png
-%{_datadir}/icons/hicolor/32x32/mimetypes/*.png
-%{_datadir}/icons/hicolor/scalable/mimetypes/*.svg
-%{_datadir}/mime/packages/org.rncbc.qtractor.xml
-%{_datadir}/metainfo/org.rncbc.qtractor.metainfo.xml
-%{_datadir}/qtractor/audio/metro_bar.wav
-%{_datadir}/qtractor/audio/metro_beat.wav
-%{_datadir}/qtractor/instruments/Standard1.ins
-%{_datadir}/qtractor/palette/
-%{_mandir}/man1/*
-%{_mandir}/fr/man1/qtractor.1.*
+%find_lang %{name} --with-qt
