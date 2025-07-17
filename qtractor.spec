@@ -1,15 +1,13 @@
-#define debug_package         %%{nil}
-#global	_empty_manifest_terminate_build 0
+Summary:		An Audio/MIDI multi-track sequencer
+Name:	qtractor
 
-Name:       qtractor
-Summary:    An Audio/MIDI multi-track sequencer
-Version:    1.5.5
-Release:    1
-License:    GPLv2+
-Group:      Sound
-Url:        https://qtractor.sourceforge.net/
-Source0:   https://sourceforge.net/projects/qtractor/files/qtractor/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:		cmake >= 3.15
+Version:		1.5.6
+Release:		1
+License:		GPLv2+
+Group:	Sound
+Url:		https://qtractor.sourceforge.net/
+Source0:	https://sourceforge.net/projects/qtractor/files/qtractor/%{version}/%{name}-%{version}.tar.gz
+BuildRequires:		cmake >= 3.17
 BuildRequires:		desktop-file-utils
 BuildRequires:		git
 BuildRequires:		qmake-qt6
@@ -20,6 +18,7 @@ BuildRequires:		cmake(Qt6LinguistTools)
 BuildRequires:		cmake(Qt6Svg)
 BuildRequires:		cmake(Qt6Widgets)
 BuildRequires:		cmake(Qt6Xml)
+BuildRequires:		clap-devel
 BuildRequires:		ladspa-devel
 BuildRequires:		pkgconfig(alsa)
 BuildRequires:		pkgconfig(aubio)
@@ -86,6 +85,7 @@ Audio Workstation GUI, specially dedicated to the personal home-studio.
 	-DCONFIG_SSE=yes	 \
 %endif
 	-DCONFIG_VST3=yes \
+	-DCONFIG_CLAP=yes \
 	-DCONFIG_WAYLAND=no
 
 %make_build
