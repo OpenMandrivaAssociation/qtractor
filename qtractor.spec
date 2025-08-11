@@ -1,7 +1,6 @@
 Summary:		An Audio/MIDI multi-track sequencer
 Name:	qtractor
-
-Version:		1.5.6
+Version:		1.5.7
 Release:		1
 License:		GPLv2+
 Group:	Sound
@@ -103,7 +102,7 @@ desktop-file-edit \
 	--remove-category="ALSA" \
 	--remove-category="JACK" \
 	--add-category="Midi" \
-	--add-category="X-MandrivaLinux-Sound" \
+	--add-category="X-OpenMandrivaLinux-Sound" \
 	%{buildroot}%{_datadir}/applications/org.rncbc.%{name}.desktop
 
 %find_lang %{name} --with-qt
